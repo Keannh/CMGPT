@@ -14,7 +14,10 @@ So instead, I imagine a disassociation between computation and memory. Effective
 Introduce a new attention head that only carries the memory or split each attention head into computation and memory component
 
 ## Simulate with additional tokens
-
+Expand the token sequence (t1 t2 t3) to (t1_m t1_c t2_m t2_c t3_m t3_c), where _m and _c are the same. Then, each _m token attends to each previous _c token and each _c token also attends to each previous _c token
+Or do (t1 x t2 x t3 x), so add an additional token. 
 
 # Further Thoughts
 I think in general it is suboptimal to have one vector serve multiple functions in a model. I think it is better to have many different components that each serve their own purpose and only after aggregate their information. 
+
+I think there can also more done with more token here. For instance, each token t_i\<j could provide one computation vector for each token t_i\>=j
